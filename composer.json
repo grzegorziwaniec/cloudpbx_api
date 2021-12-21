@@ -1,0 +1,19 @@
+{
+    "name": "vendor/cloudpbx-api-client",
+    "description": "Przykładowy klient api CloudPBX",
+    "authors": [
+        {
+            "name": "Grzesiek Iwaniec",
+            "email": "grzegorz.iwaniec@poziom7.pl"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "dev-master",
+        "textalk/websocket": "9999999-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    }
+}
