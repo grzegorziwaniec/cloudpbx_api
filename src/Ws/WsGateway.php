@@ -6,12 +6,17 @@ use Src\Ws\Event;
 
 
 /**
- * Description of WsGateway
+ *
  *
  * @author grzesiek
  */
 class WsGateway {
-    
+
+    /**
+     * 
+     * @param string $data
+     * @return boolean
+     */
     public function processData($data) {
         
         $obj = json_decode($data);
@@ -20,7 +25,7 @@ class WsGateway {
              return FALSE;
         
         if(! property_exists($obj, 'text'))
-                return false;
+            return FALSE;
         
         
         $event = new Event();
@@ -28,7 +33,7 @@ class WsGateway {
 
         if($event->type == Event::EVENT_TYPE_SUBSCRIBER) {                                               
             if(property_exists($event->data, "connectPeerNumber")) {
-                echo "Numer ".$event->getCallerNumberFromPeer(). " połączenie z " .$event->data->connectPeerNumber."\n";
+                echo "Numer ".self::getCallerNumberFromPeer($event->data->peer). " połączenie z " .$event->data->connectPeerNumber."\n";
             }
         }
         
@@ -41,12 +46,19 @@ class WsGateway {
         }
 
         if($event->type == Event::EVENT_TYPE_QMEMBER) {        
-            echo "Agent ".$event->getCallerNumberFromPeer()." kolejki ".$event->data->queue." ilość odebranych połączeń ".$event->data->m_ct."\n";
+            echo "Agent ".self::getCallerNumberFromPeer($event->data->peer)." kolejki ".$event->data->queue." ilość odebranych połączeń ".$event->data->m_ct."\n";
         }                                       
+     
+        return TRUE;
         
     }
-    
-    static function getStateName($state) {
+    /**
+     * mapowanie wartości stanów na nazwy
+     * 
+     * @param int $state
+     * @return string
+     */
+    public static function getStateName($state) {
         $arr = [
             0 => "Wolny", //Idle
             1 => "Rozmowa", //In Use
@@ -60,6 +72,14 @@ class WsGateway {
     }
  
     
-    
-    
+    /**
+     * Zwraca numer końcówki, której dotyczy event
+     * 
+     * @param string $peer     
+     * @return string
+     */
+    public static function getCallerNumberFromPeer($peer) {
+        return substr($peer, strlen(PBX_NAME) + 1);
+    }
+
 }

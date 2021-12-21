@@ -35,16 +35,6 @@ class Event {
     }
 
 
-    /**
-     * Zwraca numer końcówki, której dotyczy event
-     * @return string
-     */
-    public function getCallerNumberFromPeer() {
-        
-        if(!$this->data || !property_exists($this->data, "peer")) 
-            return NULL;
-        
-        return substr($this->data->peer, strlen(PBX_NAME) + 1);
-    }
+
     
 }

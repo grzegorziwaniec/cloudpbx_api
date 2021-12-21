@@ -13,15 +13,14 @@ $wsGateway = new WsGateway();
         
 while (true) {
     try {
+        
         $data = $client->receive();
         $wsGateway->processData($data);
+
     } catch (\WebSocket\ConnectionException $e) {
-        if($e->getCode() == 1024) {
-            
-        } else {
-            echo "error!! $e\n";
-            exit();
-        }
+        
+        die("error ".$e->getMessage());
+        
     }
 }
 $client->close();
