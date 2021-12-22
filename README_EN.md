@@ -1,6 +1,8 @@
 # cloudpbx_api_client
+![CloudPBX logo](https://www.cloudpbx.pl/images/cloud-full-logo-blue-black-128.png)
+>
 > Sample client for CloudPBX API.
-
+>
 
 ## General Information
 - CloudPBX service is a cloud telephony platform with most advanced telco features and simple user interface. It offers virtual PBXes in VoIP technology for busines. 
