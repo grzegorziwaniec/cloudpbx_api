@@ -1,5 +1,8 @@
 # cloudpbx_api_client
+![CloudPBX logo](https://www.cloudpbx.pl/images/cloud-full-logo-blue-black-128.png)
+>
 > Przykładowy klient API systemu CloudPBX
+>
 
 
 ## General Information
